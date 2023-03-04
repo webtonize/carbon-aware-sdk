@@ -30,10 +30,23 @@ inputs:
     description:
       'Set output to verbose messages.'
     required: false
+  wattTimeUsername:
+    description:
+      'Username for watttime emissions data service'
+    required: true
+  wattTimePassword:
+    description:
+      'Password for watttime emissions data service'
+    required: true
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    DataSources__EmissionsDataSource: 'WattTime'
+    DataSources__Configurations__WattTime__Username: ${{ inputs.wattTimeUsername }}
+    DataSources__Configurations__WattTime__Password: ${{ inputs.wattTimePassword }}
+    
   args:
   - ${{ inputs.location }}
   - ${{ inputs.config }}
