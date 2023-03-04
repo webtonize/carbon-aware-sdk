@@ -33,7 +33,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: './src/CarbonAware.CLI/src/Dockerfile'
   args:
   - ${{ inputs.location }}
   - ${{ inputs.config }}
