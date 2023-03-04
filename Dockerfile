@@ -27,7 +27,7 @@ LABEL com.github.actions.icon="sliders"
 LABEL com.github.actions.color="purple"
 
 # Relayer the .NET SDK, anew with the build output
-FROM mcr.microsoft.com/dotnet/runtime:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 COPY --from=build-env /out .
 RUN apt-get update && apt-get install jq -y
 
