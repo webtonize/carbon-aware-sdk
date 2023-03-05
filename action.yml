@@ -8,11 +8,6 @@ inputs:
     description:
       'Required. The location is a comma seperated list of named locations or regions specific to the emissions data provided.'
     required: true
-  config:
-    description:
-      'Custom carbon aware configuration file'
-    required: false
-    default: '/carbon-aware.json'
   lowest:
     description:
       'Only return the lowest emission result of all matching results'
@@ -44,12 +39,13 @@ runs:
   image: 'Dockerfile'
   env:
     DataSources__EmissionsDataSource: 'WattTime'
+    DataSources__ForecastDataSource: 'WattTime'
+    DataSources__Configurations__WattTime__Type: 'WattTime'
     DataSources__Configurations__WattTime__Username: ${{ inputs.wattTimeUsername }}
     DataSources__Configurations__WattTime__Password: ${{ inputs.wattTimePassword }}
     
   args:
   - ${{ inputs.location }}
-  - ${{ inputs.config }}
   - '--lowest'
 
 
